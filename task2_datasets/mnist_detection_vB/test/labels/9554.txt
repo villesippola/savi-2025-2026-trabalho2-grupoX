@@ -1,2 +1,0 @@
-label,xmin,ymin,xmax,ymax
-9,33,61,41,81
