@@ -1,35 +1,36 @@
-# Trabalho Prático 2 - SAVI
+# Practical Work 2 - SAVI
 ==============
 
-Miguel Riem Oliveira <mriem@ua.pt>
+Group X
+
 2025-2026
 
-# Trabalho Prático: SAVI-Mnist
+# Practical Work: SAVI-Mnist
 
-**Classificação e Deteção de Dígitos Manuscritos com Redes Neuronais Convolucionais**
+**Classification and Detection of Handwritten Digits using Convolutional Neural Networks**
 
-## Introdução
+## Methodology
 
-Enquanto o primeiro trabalho focou em métodos clássicos de visão computacional (geometria e registo), este segundo trabalho foca-se na aprendizagem profunda (**Deep Learning**). O objetivo é evoluir de um problema de classificação simples (MNIST clássico) para um cenário mais realista e complexo: a deteção e classificação de múltiplos objetos em imagens maiores.
+While the first work focused on classical computer vision methods (geometry and registration), this second work focuses on deep learning . The goal is to evolve from a simple classification problem (classic MNIST) to a more realistic and complex scenario: the detection and classification of multiple objects in larger images.
 
-Os alunos irão consolidar os conhecimentos adquiridos sobre **PyTorch**, arquiteturas **CNN** (Convolutional Neural Networks), métricas de avaliação e técnicas de deteção de objetos. O trabalho evolui incrementalmente desde a otimização de um classificador até à implementação de um detetor de objetos completo.
+Students will consolidate their acquired knowledge of PyTorch (Convolutional Neural Network) architectures , CNN , evaluation metrics, and object detection techniques. The work evolves incrementally from the optimization of a classifier to the implementation of a complete object detector.
 
-## Configuração e Pré-requisitos
+## Configuration and Prerequisites
 
-Certifique-se de que tem as seguintes bibliotecas instaladas no seu ambiente Python (além das já utilizadas no TP1):
-*   `torch` e `torchvision` (PyTorch)
-*   `scikit-learn` (para cálculo de métricas avançadas)
-*   `tqdm` (para barras de progresso)
-*   `seaborn` (para visualização de matrizes de confusão)
-*   `git` (para clonar o repositório de geração de dataset)
+Make sure you have the following libraries installed in your Python environment (in addition to those already used in TP1):
+*   `torch` and `torchvision` (PyTorch)
+*   `scikit-learn` (for calculating advanced metrics)
+*   `tqdm` (for progress bars)
+*   `seaborn` (for visualization of confusion matrices)
+*   `git` (to clone the dataset generation repository)
 
-**Dados Base:** O dataset MNIST será descarregado automaticamente via `torchvision` para a Tarefa 1. Para as tarefas seguintes, será gerado um dataset sintético.
+**Base Data:** The MNIST dataset will be downloaded automatically via `torchvision` for Task 1. For subsequent tasks, a synthetic dataset will be generated. 
 
-## Tarefas
+## Tasks
 
 ---
 
-### Tarefa 1: Classificador CNN Otimizado (MNIST Completo)
+### Task 1: Optimized CNN Classifier (Full MNIST)
 
 **Objetivo:** Melhorar o classificador base desenvolvido nas aulas, utilizando o dataset MNIST completo e arquiteturas mais robustas.
 
@@ -47,7 +48,7 @@ Certifique-se de que tem as seguintes bibliotecas instaladas no seu ambiente Pyt
 
 ---
 
-### Tarefa 2: Geração de Dataset de "Cenas" com Dígitos
+### Task 2: Generating a Dataset of "Scenes" with Digits
 
 **Objetivo:** Criar um dataset mais complexo onde os dígitos não estão centrados e podem existir múltiplos dígitos numa imagem (simulando um cenário de deteção de objetos).
 
@@ -70,7 +71,7 @@ Certifique-se de que tem as seguintes bibliotecas instaladas no seu ambiente Pyt
 
 ---
 
-### Tarefa 3: Deteção por Janela Deslizante (Sliding Window)
+### Task 3: Sliding Window Detection
 
 **Objetivo:** Utilizar o classificador treinado na Tarefa 1 para encontrar dígitos nas "cenas" da Tarefa 2, sem re-treinar a rede.
 
@@ -86,7 +87,7 @@ Certifique-se de que tem as seguintes bibliotecas instaladas no seu ambiente Pyt
 
 ---
 
-### Tarefa 4: Detetor e Classificador Integrado
+### Task 4: Integrated Detector and Classifier
 
 **Objetivo:** Alterar a arquitetura ou a estratégia de treino para realizar a deteção e classificação de forma mais eficiente e precisa.
 
