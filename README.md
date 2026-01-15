@@ -5,27 +5,6 @@ Group X
 
 2025-2026
 
-# Practical Work: SAVI-Mnist
-
-**Classification and Detection of Handwritten Digits using Convolutional Neural Networks**
-
-## Methodology
-
-While the first work focused on classical computer vision methods (geometry and registration), this second work focuses on deep learning . The goal is to evolve from a simple classification problem (classic MNIST) to a more realistic and complex scenario: the detection and classification of multiple objects in larger images.
-
-Students will consolidate their acquired knowledge of PyTorch (Convolutional Neural Network) architectures , CNN , evaluation metrics, and object detection techniques. The work evolves incrementally from the optimization of a classifier to the implementation of a complete object detector.
-
-## Configuration and Prerequisites
-
-Make sure you have the following libraries installed in your Python environment (in addition to those already used in TP1):
-*   `torch` and `torchvision` (PyTorch)
-*   `scikit-learn` (for calculating advanced metrics)
-*   `tqdm` (for progress bars)
-*   `seaborn` (for visualization of confusion matrices)
-*   `git` (to clone the dataset generation repository)
-
-**Base Data:** The MNIST dataset will be downloaded automatically via `torchvision` for Task 1. For subsequent tasks, a synthetic dataset will be generated. 
-
 ## Tasks
 
 ---
