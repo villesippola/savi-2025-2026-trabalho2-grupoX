@@ -46,6 +46,22 @@ Make sure you have the following libraries installed in your Python environment 
 
 **Deliverable:** Código Python **main_classification.py** e módulos associados. O `README` deve conter a tabela de resultados e a imagem da matriz de confusão.
 
+| Digit | Precision | Recall | F1-Score |
+| --- | --- | --- | --- |
+| 0 | 0.9910 | 0.9980 | 0.9944 |
+| 1 | 0.9947 | 0.9965 | 0.9956 |
+| 2 | 0.9942 | 0.9913 | 0.9927 |
+| 3 | 0.9950 | 0.9941 | 0.9946 |
+| 4 | 0.9869 | 0.9939 | 0.9904 |
+| 5 | 0.9922 | 0.9922 | 0.9922 |
+| 6 | 0.9906 | 0.9916 | 0.9911 |
+| 7 | 0.9913 | 0.9951 | 0.9932 |
+| 8 | 0.9918 | 0.9938 | 0.9928 |
+| 9 | 0.9939 | 0.9752 | 0.9845 |
+| Overall | 0.9921 | 0.9922 | 0.9921 |
+
+Overall accuracy: 0.9922
+
 ---
 
 ### Task 2: Generating a Dataset of "Scenes" with Digits
