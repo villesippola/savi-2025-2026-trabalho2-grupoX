@@ -67,7 +67,7 @@ Overall accuracy: 0.9922
 
 ---
 
-### Task 2: Generating a Dataset of "Scenes" with Digits
+### Task 2: Synthetic Dataset Generation
 
 We generated a "Scene" dataset to simulate object detection tasks. The generation script (`generate_data.py`) places MNIST digits onto a larger canvas (128x128) while preventing overlap.
 
