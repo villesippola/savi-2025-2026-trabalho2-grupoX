@@ -21,7 +21,10 @@ To classify individual MNIST digits, we developed a custom Convolutional Neural 
         * `ReLU`: Non-linear activation.
         * `MaxPool2d`: To reduce spatial dimensions and computation.
     * **Regularization:** `Dropout` layers were added before the fully connected layers to prevent overfitting.
-    * **Loss Function:** `MSELoss` (with One-Hot Encoded labels) / `CrossEntropyLoss`.
+
+<img width="1156" height="683" alt="Screenshot from 2026-01-15 21-16-45" src="https://github.com/user-attachments/assets/74538e37-3174-4bd0-91ab-e9c9239f5881" />
+
+
 
 | Digit | Precision | Recall | F1-Score |
 | --- | --- | --- | --- |
