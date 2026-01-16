@@ -1,4 +1,4 @@
-# Practical Work 2 - SAVI
+<img width="1000" height="600" alt="training_curve_task4" src="https://github.com/user-attachments/assets/93eb69e5-f39d-42f3-a561-3700a0d17157" /># Practical Work 2 - SAVI
 ==============
 
 Group 8
@@ -159,23 +159,55 @@ To overcome the limitations observed in Task 3 (specifically the high false posi
 3. **Inference Logic:**
    During the Sliding Window process, we added a filter logic: any window classified as "Class 10" is immediately discarded as background, regardless of its confidence score.
 
-**Visual Results:**
+---
 
-We tested the improved model on both dataset versions to verify its robustness.
+**Quantitative Evaluation:**
+
+Before visual testing, we validated the model's performance metrics to ensure it correctly learned to distinguish digits from the background.
+
+**1. Training Stability:**
+The training loss curve shows a rapid convergence, indicating that the model easily learned to separate the new "Background" class from the digits within 5 epochs.
+
+<img width="1000" height="600" alt="training_curve_task4" src="https://github.com/user-attachments/assets/0fe3d7ff-af6a-422d-ab0e-5e60026c5c17" />
+
+> *Figure 8: Training loss over epochs. The steep drop indicates effective learning.*
+
+**2. Classification Metrics:**
+The classification report confirms the robustness of the new model. Notably, the **"Fondo" (Background)** class achieved a **Precision and Recall of 1.00**, meaning the model almost never confuses the background with a digit.
+
+<img width="585" height="415" alt="Classification_report" src="https://github.com/user-attachments/assets/3c84cc22-2da4-4554-9ccd-1ba518310260" />
+
+> *Figure 9: Precision, Recall, and F1-Score per class. Note the perfect score for the background class.*
+
+**3. Confusion Matrix:**
+The confusion matrix visually demonstrates the separation between classes. The bottom-right square (Class "Fondo") is distinct, with zero confusion between the background and any digit.
+
+<img width="1000" height="800" alt="confusion_matrix_task4" src="https://github.com/user-attachments/assets/b7aecb84-0884-4a01-8fe6-800ec4ddd69d" />
+
+> *Figure 10: Confusion Matrix including the 11th class (Background). The diagonal shows high accuracy.*
+
+---
+
+**Visual Results (Sliding Window):**
+
+After validating the metrics, we tested the detector on the test images.
 
 **1. Results on Dataset vB (Single Digit):**
 The network effectively filters out the black background. Unlike Task 3, there are no random green boxes in the empty space.
 
-<img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/fd27cbb6-cd8e-469e-9421-737186155243" />
+<img width="800" alt="mosaic_task4_vB" src="https://github.com/user-attachments/assets/fd27cbb6-cd8e-469e-9421-737186155243" />
 
-> *Figure 9: Improved detection on Dataset vB. The false positives are completely eliminated.*
+> *Figure 11: Improved detection on Dataset vB. The false positives are completely eliminated.*
 
 **2. Results on Dataset vD (Multiple Digits):**
 The model is now capable of ignoring the background even in complex scenes with multiple objects. It successfully detects multiple digits without generating noise in the void areas.
 
-<img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/794cf8bb-5d21-48cf-83b4-0320270d14cd" />
+<img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/a1e1127f-2aa5-4f04-a294-bd366211a265" />
 
-> *Figure 10: Improved detection on Dataset vD. The detector isolates multiple digits cleanly. Note: Some larger digits may be partially missed due to the fixed sliding window size (28x28) being smaller than the digit itself.*
+
+> *Figure 12: Improved detection on Dataset vD. The detector isolates multiple digits cleanly.*
+
+---
 
 **Comparison (Task 3 vs Task 4):**
 
@@ -188,7 +220,3 @@ The model is now capable of ignoring the background even in complex scenes with 
 
 **Conclusion:**
 By explicitly modelling the "Background" class, we successfully transformed a simple classifier into a functional object detector capable of locating digits in a larger scene without being confused by empty space. This fulfills the requirement of creating a robust detector without needing complex architectures like YOLO for this specific dataset.
-
----
-
----
