@@ -92,13 +92,15 @@ We generated a "Scene" dataset to simulate object detection tasks. The generatio
 
 > *Figure 4: Mosaic of generated version D images with Ground Truth bounding boxes.*
 
-<img width="4477" height="1894" alt="statistics_vB" src="https://github.com/user-attachments/assets/70b851d3-78be-4d4c-84a7-b3f977fcdd79" />
+<img width="5968" height="3568" alt="statistics_vB" src="https://github.com/user-attachments/assets/741f0ec8-9498-4bc3-9581-f0f573b8d1f8" />
 
 > *Figure 5: Distribution of classes, digits per image, and digit dimensions for version B.*
 
-<img width="4483" height="1894" alt="statistics_vD" src="https://github.com/user-attachments/assets/efb61b57-71da-4845-a121-245a5eaa1ca4" />
+<img width="5992" height="3568" alt="statistics_vD" src="https://github.com/user-attachments/assets/4df9bb1e-63c8-4369-8fea-d717d7b2e6f1" />
 
 > *Figure 6: Distribution of classes, digits per image, and digit dimensions for version D.* 
+
+The graphs show that the size of the digits varies a lot and they also differ from the set range (22x22 to 36x36). This is because the program takes the dimensions from the tight boxes visible in the mosaics. In this case, for example, digit 1 has smaller dimensions than digit 5.
 
 ---
 
