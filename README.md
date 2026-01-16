@@ -99,7 +99,25 @@ We generated a "Scene" dataset to simulate object detection tasks. The generatio
 
 ### Task 3: Sliding Window Detection
 
+In this task, we implemented a **Sliding Window** approach to detect digits in the larger images generated in Task 2, utilizing the pre-trained CNN from Task 1 (`ModelBetterCNN`) as the backbone classifier.
 
+**Methodology:**
+* **Mechanism:** A window of size 28x28 pixels slides across the input image (128x128) with a step size (stride) of 6 pixels.
+* **Inference:** Each cropped region is normalized and passed through the CNN.
+* **Detection Criteria:** If the model's confidence for a predicted class exceeds a threshold of **0.98**, a bounding box is drawn around the window.
+
+**Visual Results:**
+Below is a mosaic showing the detection results on 25 test images (from Dataset Version B). The green boxes represent detections with high confidence.
+
+<img width="2250" height="2250" alt="mosaic_task3" src="https://github.com/user-attachments/assets/41217d84-1724-42e3-8671-c64f706857bf" />
+
+
+> *Figure 7: Sliding Window detection results. The model successfully localizes digits but generates numerous False Positives in the background.*
+
+**Qualitative Evaluation:**
+* **False Positives (The Background Problem):** As observed in Figure 7, the model frequently detects digits in empty black areas.
+* **Root Cause:** The CNN was trained on the closed set of MNIST digits (0-9) and never encountered a "Background" or "Void" class during training. Consequently, the network forces empty space into one of the digit classes (often classifying noise or black pixels as a '1' or '7') with high confidence.
+* **Performance:** This approach is computationally expensive as it requires thousands of forward passes per image and lacks precision in distinguishing objects from empty space. This limitation is addressed in Task 4.
 
 ---
 
