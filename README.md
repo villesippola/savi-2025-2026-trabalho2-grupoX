@@ -107,15 +107,26 @@ In this task, we implemented a **Sliding Window** approach to detect digits in t
 * **Detection Criteria:** If the model's confidence for a predicted class exceeds a threshold of **0.98**, a bounding box is drawn around the window.
 
 **Visual Results:**
-Below is a mosaic showing the detection results on 25 test images (from Dataset Version B). The green boxes represent detections with high confidence.
+
+We evaluated the performance on two dataset versions to illustrate the limitations of this approach.
+
+**1. Results on Dataset vB (Single Digit):**
+The green boxes represent detections with high confidence on images containing a single digit.
 
 <img width="2250" height="2250" alt="mosaic_task3" src="https://github.com/user-attachments/assets/41217d84-1724-42e3-8671-c64f706857bf" />
 
 
-> *Figure 7: Sliding Window detection results. The model successfully localizes digits but generates numerous False Positives in the background.*
+> *Figure 7: Sliding Window detection on Dataset vB. The model successfully localizes the digit but generates False Positives in the background.*
+
+**2. Results on Dataset vD (Multiple Digits):**
+When applying the same method to complex scenes with multiple digits and variable scales, the issue becomes critical.
+
+<img width="2250" height="2250" alt="mosaic_task3" src="https://github.com/user-attachments/assets/c402bbe3-24e7-46d9-bccd-3bee3ae06dd4" />
+
+> *Figure 8: Sliding Window detection on Dataset vD. The accumulation of False Positives in the background creates a "noisy" detection, making it difficult to isolate the real digits cleanly.*
 
 **Qualitative Evaluation:**
-* **False Positives (The Background Problem):** As observed in Figure 7, the model frequently detects digits in empty black areas.
+* **False Positives (The Background Problem):** As observed in Figures 7 and 8, the model frequently detects digits in empty black areas.
 * **Root Cause:** The CNN was trained on the closed set of MNIST digits (0-9) and never encountered a "Background" or "Void" class during training. Consequently, the network forces empty space into one of the digit classes (often classifying noise or black pixels as a '1' or '7') with high confidence.
 * **Performance:** This approach is computationally expensive as it requires thousands of forward passes per image and lacks precision in distinguishing objects from empty space. This limitation is addressed in Task 4.
 
@@ -127,27 +138,37 @@ To overcome the limitations observed in Task 3 (specifically the high false posi
 
 **Methodology:**
 
-1.  **Architecture Modification:**
-    We updated the CNN architecture (`ModelTask4`) to output **11 classes** instead of the original 10.
-    * Indices `0-9`: Represent the digits.
-    * Index `10`: Represents the **Background/Void**.
+1. **Architecture Modification:**
+   We updated the CNN architecture (`ModelTask4`) to output **11 classes** instead of the original 10.
+   * Indices `0-9`: Represent the digits.
+   * Index `10`: Represents the **Background/Void**.
 
-2.  **Retraining with Background Class:**
-    We created a custom training loop (`train_task4.py`) that feeds the network with a mix of data:
-    * **Positive Samples:** Standard MNIST images (labeled 0-9).
-    * **Negative Samples:** Empty black images or noise generated on the fly (labeled as class 10).
-    * This forces the network to learn features for "emptiness" rather than guessing a digit.
+2. **Retraining with Background Class:**
+   We created a custom training loop (`train_task4.py`) that feeds the network with a mix of data:
+   * **Positive Samples:** Standard MNIST images (labeled 0-9).
+   * **Negative Samples:** Empty black images or noise generated on the fly (labeled as class 10).
+   * This forces the network to learn features for "emptiness" rather than guessing a digit.
 
-3.  **Inference Logic:**
-    During the Sliding Window process, we added a filter logic: any window classified as "Class 10" is immediately discarded as background, regardless of its confidence score.
+3. **Inference Logic:**
+   During the Sliding Window process, we added a filter logic: any window classified as "Class 10" is immediately discarded as background, regardless of its confidence score.
 
 **Visual Results:**
 
-The improvement is drastic. As shown in the mosaic below, the network effectively filters out the black background, drawing bounding boxes only around actual digits.
+We tested the improved model on both dataset versions to verify its robustness.
+
+**1. Results on Dataset vB (Single Digit):**
+The network effectively filters out the black background. Unlike Task 3, there are no random green boxes in the empty space.
 
 <img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/fd27cbb6-cd8e-469e-9421-737186155243" />
 
-> *Figure 8: Results of the Task 4 Improved Detector. Unlike Task 3, false positives in the background are almost completely eliminated, providing a clean detection.*
+> *Figure 9: Improved detection on Dataset vB. The false positives are completely eliminated.*
+
+**2. Results on Dataset vD (Multiple Digits):**
+The model is now capable of ignoring the background even in complex scenes with multiple objects. It successfully detects multiple digits without generating noise in the void areas.
+
+<img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/794cf8bb-5d21-48cf-83b4-0320270d14cd" />
+
+> *Figure 10: Improved detection on Dataset vD. The detector isolates multiple digits cleanly. Note: Some larger digits may be partially missed due to the fixed sliding window size (28x28) being smaller than the digit itself.*
 
 **Comparison (Task 3 vs Task 4):**
 
@@ -162,6 +183,5 @@ The improvement is drastic. As shown in the mosaic below, the network effectivel
 By explicitly modelling the "Background" class, we successfully transformed a simple classifier into a functional object detector capable of locating digits in a larger scene without being confused by empty space. This fulfills the requirement of creating a robust detector without needing complex architectures like YOLO for this specific dataset.
 
 ---
-
 
 ---
