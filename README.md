@@ -30,7 +30,8 @@ To classify individual MNIST digits, we developed a custom Convolutional Neural 
 
 #### Training Curve
 
-<img width="640" height="480" alt="training" src="https://github.com/user-attachments/assets/e8731878-76b8-476a-b051-cac6405b70d1" />
+<img width="640" height="480" alt="training" src="https://github.com/user-attachments/assets/e8731878-76b8-476a-b051-cac6405b70d1" /><img width="640" height="480" alt="training" src="https://github.com/user-attachments/assets/266ab7af-dfa0-4aa1-9dbb-3542f4c0e45c" />
+
 
 *Figure 1: Training and test loss over epochs. The best checkpoint is marked in green.*
 
