@@ -87,11 +87,11 @@ We generated a "Scene" dataset to simulate object detection tasks. The generatio
 
 > *Figure 4: Mosaic of generated version D images with Ground Truth bounding boxes.*
 
-<img width="5968" height="3568" alt="statistics_vB" src="https://github.com/user-attachments/assets/aed69417-f127-4e7f-9340-907d149c312c" />
+<img width="4477" height="1894" alt="statistics_vB" src="https://github.com/user-attachments/assets/70b851d3-78be-4d4c-84a7-b3f977fcdd79" />
 
 > *Figure 5: Distribution of classes, digits per image, and digit dimensions for version B.*
 
-<img width="5992" height="3568" alt="statistics_vD" src="https://github.com/user-attachments/assets/bdba7c20-a626-4afa-af88-1c79c0a17f96" />
+<img width="4483" height="1894" alt="statistics_vD" src="https://github.com/user-attachments/assets/efb61b57-71da-4845-a121-245a5eaa1ca4" />
 
 > *Figure 6: Distribution of classes, digits per image, and digit dimensions for version D.* 
 
