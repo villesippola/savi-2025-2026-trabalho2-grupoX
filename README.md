@@ -123,6 +123,45 @@ Below is a mosaic showing the detection results on 25 test images (from Dataset 
 
 ### Task 4: Integrated Detector and Classifier
 
+To overcome the limitations observed in Task 3 (specifically the high false positive rate in empty areas), we implemented an improved classification strategy by explicitly teaching the network to recognize the "background".
+
+**Methodology:**
+
+1.  **Architecture Modification:**
+    We updated the CNN architecture (`ModelTask4`) to output **11 classes** instead of the original 10.
+    * Indices `0-9`: Represent the digits.
+    * Index `10`: Represents the **Background/Void**.
+
+2.  **Retraining with Background Class:**
+    We created a custom training loop (`train_task4.py`) that feeds the network with a mix of data:
+    * **Positive Samples:** Standard MNIST images (labeled 0-9).
+    * **Negative Samples:** Empty black images or noise generated on the fly (labeled as class 10).
+    * This forces the network to learn features for "emptiness" rather than guessing a digit.
+
+3.  **Inference Logic:**
+    During the Sliding Window process, we added a filter logic: any window classified as "Class 10" is immediately discarded as background, regardless of its confidence score.
+
+**Visual Results:**
+
+The improvement is drastic. As shown in the mosaic below, the network effectively filters out the black background, drawing bounding boxes only around actual digits.
+
+<img width="2250" height="2250" alt="mosaic_task4" src="https://github.com/user-attachments/assets/fd27cbb6-cd8e-469e-9421-737186155243" />
+
+> *Figure 8: Results of the Task 4 Improved Detector. Unlike Task 3, false positives in the background are almost completely eliminated, providing a clean detection.*
+
+**Comparison (Task 3 vs Task 4):**
+
+| Feature | Task 3 (Base Sliding Window) | Task 4 (Background Aware) |
+| :--- | :--- | :--- |
+| **Model Classes** | 10 (Digits only) | **11 (Digits + Background)** |
+| **False Positives** | **High** (Detects digits in black space) | **Near Zero** |
+| **Precision** | Low | **High** |
+| **Visual Quality** | Cluttered with green boxes | Clean and focused |
+
+**Conclusion:**
+By explicitly modelling the "Background" class, we successfully transformed a simple classifier into a functional object detector capable of locating digits in a larger scene without being confused by empty space. This fulfills the requirement of creating a robust detector without needing complex architectures like YOLO for this specific dataset.
+
+---
 
 
 ---
